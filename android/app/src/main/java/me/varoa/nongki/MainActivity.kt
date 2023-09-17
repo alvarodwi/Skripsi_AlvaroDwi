@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
@@ -29,6 +30,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    // set false dulu untuk test login
-    private fun isLoggedIn() = false
+    private fun isLoggedIn() = FirebaseAuth.getInstance().currentUser != null
 }
