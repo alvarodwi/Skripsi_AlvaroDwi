@@ -30,6 +30,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     }
                 }
             }
+
+            with(layoutHome) {
+                btnSearch.setOnClickListener {
+                    navigateTo(HomeFragmentDirections.actionHomeToSearch())
+                }
+                itemDatabase.setOnClickListener {
+                    navigateTo(HomeFragmentDirections.actionHomeToDataset())
+                }
+                itemHistory.setOnClickListener {
+                    navigateTo(HomeFragmentDirections.actionHomeToHistory())
+                }
+            }
         }
     }
 }

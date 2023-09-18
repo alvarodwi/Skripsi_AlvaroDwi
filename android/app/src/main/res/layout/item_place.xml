@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="16dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/lbl_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceTitleMedium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kafe A" />
+
+        <TextView
+            android:id="@+id/lbl_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceBodySmall"
+            app:layout_constraintStart_toStartOf="@id/lbl_name"
+            app:layout_constraintTop_toBottomOf="@id/lbl_name"
+            tools:text="Jalan ABC No 123 (N km dari lokasi kamu)" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_criteria1"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:textAppearance="?textAppearanceLabelSmall"
+            app:layout_constraintStart_toStartOf="@id/lbl_name"
+            app:layout_constraintTop_toBottomOf="@id/lbl_address"
+            app:shapeAppearanceOverlay="?shapeAppearanceCornerExtraLarge"
+            tools:text="Harga - $$$" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_criteria2"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_marginLeft="8dp"
+            android:textAppearance="?textAppearanceLabelSmall"
+            app:layout_constraintStart_toEndOf="@id/chip_criteria1"
+            app:layout_constraintTop_toBottomOf="@id/lbl_address"
+            app:shapeAppearanceOverlay="?shapeAppearanceCornerExtraLarge"
+            tools:text="Lokasi 😠" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_criteria3"
+            android:layout_width="wrap_content"
+            android:layout_height="42dp"
+            android:layout_marginLeft="8dp"
+            android:textAppearance="?textAppearanceLabelSmall"
+            app:layout_constraintStart_toEndOf="@id/chip_criteria2"
+            app:layout_constraintTop_toBottomOf="@id/lbl_address"
+            app:shapeAppearanceOverlay="?shapeAppearanceCornerExtraLarge"
+            tools:text="Fasilitas 😐" />
+
+        <TextView
+            android:id="@+id/lbl_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?textAppearanceTitleMedium"
+            app:layout_constraintTop_toTopOf="@id/lbl_name"
+            app:layout_constraintBottom_toBottomOf="@id/lbl_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="⭐ 4.0" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

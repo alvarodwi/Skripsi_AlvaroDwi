@@ -58,7 +58,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             with(screen) {
                 preference {
                     icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_sync)
-                    title = "Mulai sinkronisasi dataset"
+                    title = "Mulai sinkronisasi database"
                     summary = "Terakhir dijalankan : dd/MM/yyyy HH:mm"
                     onClick {
                         toast("Memulai sinkronisasi")
