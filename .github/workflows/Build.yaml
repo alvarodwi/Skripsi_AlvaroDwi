@@ -50,9 +50,9 @@ jobs:
         working-directory: ./android
         run: ./gradlew assembleDebug
 
-      - name: Update latest_develop tag
+      - name: Update latest-develop tag
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
-        run : git tag -f latest_develop; git push -f --tags
+        run : git tag -f latest-develop; git push -f --tags
 
       - name: Development release
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
@@ -60,7 +60,7 @@ jobs:
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
-          automatic_release_tag: latest_develop
+          automatic_release_tag: latest-develop
           title: "Latest development build"
           files: |
             android/app/build/outputs/apk/debug/app-debug.apk
