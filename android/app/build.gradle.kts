@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
     alias(libs.plugins.gradle.secrets)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.androidx.navigation.safeArgs)
     alias(libs.plugins.google.services)
     alias(libs.plugins.crashlytics)

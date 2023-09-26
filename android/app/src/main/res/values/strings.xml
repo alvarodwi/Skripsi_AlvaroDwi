@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Nongki</string>
-  <string name="title_settings">Pengaturan</string>
+    <string name="title_settings">Pengaturan</string>
+    <string name="toast_sync_failed">Sync gagal : %s</string>
 </resources>
