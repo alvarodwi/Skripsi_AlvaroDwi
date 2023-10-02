@@ -31,6 +31,7 @@ androidx-test-ext = "androidx.test.ext:junit-ktx:1.1.5"
 androidx-work = "androidx.work:work-runtime-ktx:2.8.1"
 coil = "io.coil-kt:coil:2.4.0"
 firebase-bom = "com.google.firebase:firebase-bom:32.3.1"
+hashids = "org.hashids:hashids:1.0.3"
 junit = "junit:junit:4.13.2"
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-navigation = { module = "io.insert-koin:koin-androidx-navigation", version.ref = "koin" }

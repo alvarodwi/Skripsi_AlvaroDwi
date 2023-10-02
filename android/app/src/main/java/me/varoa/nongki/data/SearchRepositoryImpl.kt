@@ -20,7 +20,10 @@ class SearchRepositoryImpl(
 ) : SearchRepository {
     override fun getResult(id: Int): Flow<SearchItem> =
         dao.getItem(id).map { entity ->
-            val places = dao.getResultPlaces(entity.results).first()
+            val places =
+                withContext(Dispatchers.IO) {
+                    dao.getResultPlaces(entity.results)
+                }
             entity.asModel {
                 places.map { it.asModel() }
             }

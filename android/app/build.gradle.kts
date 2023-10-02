@@ -121,8 +121,7 @@ dependencies {
     implementation(libs.androidx.paging)
     implementation(libs.coil)
     implementation(libs.logcat)
-
-
+    implementation(libs.hashids)
 
     /*
     unit & integration tests

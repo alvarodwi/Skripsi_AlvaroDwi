@@ -2,7 +2,6 @@ package me.varoa.nongki.data.local.dao
 
 import androidx.paging.PagingSource
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
@@ -21,7 +20,7 @@ interface SearchDao {
     fun getItem(id: Int): Flow<SearchItemEntity>
 
     @Query("select * from hangout_places where id in (:ids)")
-    fun getResultPlaces(ids: List<Int>): Flow<List<HangoutPlaceEntity>>
+    fun getResultPlaces(ids: List<Int>): List<HangoutPlaceEntity>
 
     @Query("select id from search_items where rowid = :rowId")
     fun getItemIdByRowId(rowId: Long): Flow<Int>
@@ -29,6 +28,6 @@ interface SearchDao {
     @Insert
     fun insert(item: SearchItemEntity): Long
 
-    @Delete
-    fun delete(item: SearchItemEntity)
+    @Query("delete from search_items where id = :id")
+    fun delete(id: Int)
 }

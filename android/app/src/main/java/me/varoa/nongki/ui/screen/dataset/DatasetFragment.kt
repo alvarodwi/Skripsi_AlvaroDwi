@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import me.varoa.nongki.R
 import me.varoa.nongki.databinding.FragmentDatasetBinding
 import me.varoa.nongki.ext.toast
-import me.varoa.nongki.ui.adapter.PlaceAdapter
+import me.varoa.nongki.ui.adapter.PlacePagingAdapter
 import me.varoa.nongki.utils.viewbinding.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -19,7 +19,7 @@ class DatasetFragment : Fragment(R.layout.fragment_dataset) {
     private val binding by viewBinding<FragmentDatasetBinding>()
     private val viewModel by viewModel<DatasetViewModel>()
 
-    private var adapter: PlaceAdapter? = null
+    private var adapter: PlacePagingAdapter? = null
 
     override fun onViewCreated(
         view: View,
@@ -31,7 +31,7 @@ class DatasetFragment : Fragment(R.layout.fragment_dataset) {
             toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
 
             adapter =
-                PlaceAdapter { place ->
+                PlacePagingAdapter { place ->
                     toast("${place.name} clicked!")
                 }
             rvDataset.adapter = adapter

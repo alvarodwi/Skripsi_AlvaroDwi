@@ -59,7 +59,8 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_search_to_result"
-            app:destination="@id/resultFragment" />
+            app:destination="@id/resultFragment"
+            app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"

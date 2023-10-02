@@ -29,7 +29,7 @@ open class LocationFragment(
         MaterialAlertDialogBuilder(requireContext()).apply {
             setTitle(R.string.dialog_location_permission_needed_title)
             setMessage(R.string.dialog_location_permission_needed_message)
-            setPositiveButton(android.R.string.ok) { _, _ ->
+            setPositiveButton(R.string.dialog_ok) { _, _ ->
                 launcher.launch(
                     arrayOf(
                         Manifest.permission.ACCESS_FINE_LOCATION,
@@ -37,7 +37,7 @@ open class LocationFragment(
                     ),
                 )
             }
-            setNegativeButton(android.R.string.cancel) { _, _ ->
+            setNegativeButton(R.string.dialog_cancel) { _, _ ->
                 toast("Mengembalikan ke halaman sebelumnya...")
                 findNavController().popBackStack()
             }
@@ -48,7 +48,7 @@ open class LocationFragment(
         MaterialAlertDialogBuilder(requireContext()).apply {
             setTitle(R.string.dialog_location_permission_rejected_title)
             setMessage(R.string.dialog_location_permission_rejected_message)
-            setPositiveButton(android.R.string.ok) { _, _ ->
+            setPositiveButton(R.string.dialog_ok) { _, _ ->
                 Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also {
                     it.data = Uri.fromParts("package", requireActivity().packageName, null)
                     startActivity(it)
