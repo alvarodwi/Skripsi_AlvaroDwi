@@ -50,7 +50,7 @@
         tools:layout="@layout/fragment_result">
         <argument
             android:name="searchId"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"

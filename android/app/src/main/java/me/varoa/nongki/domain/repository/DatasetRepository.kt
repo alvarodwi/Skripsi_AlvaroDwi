@@ -7,6 +7,8 @@ import me.varoa.nongki.domain.model.HangoutPlace
 interface DatasetRepository {
     fun getHangoutPlaces(q: String): Flow<PagingData<HangoutPlace>>
 
+    fun getHangoutPlace(id: Int): Flow<HangoutPlace>
+
     suspend fun insertHangoutPlace(vararg places: HangoutPlace)
 
     suspend fun deleteAllHangoutPlaces()

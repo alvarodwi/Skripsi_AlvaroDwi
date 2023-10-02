@@ -85,7 +85,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             preferenceScreen = screen
             setupPreferenceScreen(screen)
         }
-   
+
         private fun setupPreferenceScreen(screen: PreferenceScreen) =
             with(screen) {
                 preference {

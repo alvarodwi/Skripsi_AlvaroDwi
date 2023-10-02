@@ -111,6 +111,9 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-crashlytics-ktx")
     implementation(libs.play.services.auth)
+    // gms
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
 
     /*
     other libs
@@ -118,6 +121,8 @@ dependencies {
     implementation(libs.androidx.paging)
     implementation(libs.coil)
     implementation(libs.logcat)
+
+
 
     /*
     unit & integration tests
