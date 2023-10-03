@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import me.varoa.nongki.R
 import me.varoa.nongki.databinding.FragmentHistoryBinding
-import me.varoa.nongki.ext.toast
+import me.varoa.nongki.ext.navigateTo
 import me.varoa.nongki.ui.adapter.SearchItemAdapter
 import me.varoa.nongki.utils.viewbinding.viewBinding
 import org.hashids.Hashids
@@ -39,7 +39,9 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
 
             adapter =
                 SearchItemAdapter(hashids) { item ->
-                    toast("#${item.id} clicked!")
+                    navigateTo(
+                        HistoryFragmentDirections.actionHistoryToResult(item.id),
+                    )
                 }
             rvHistory.adapter = adapter
             rvHistory.layoutManager = LinearLayoutManager(requireContext())

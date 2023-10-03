@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import me.varoa.nongki.R
 import me.varoa.nongki.databinding.FragmentDatasetBinding
-import me.varoa.nongki.ext.toast
+import me.varoa.nongki.ext.generateMapsIntent
 import me.varoa.nongki.ui.adapter.PlacePagingAdapter
 import me.varoa.nongki.utils.viewbinding.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,8 +31,11 @@ class DatasetFragment : Fragment(R.layout.fragment_dataset) {
             toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
 
             adapter =
-                PlacePagingAdapter { place ->
-                    toast("${place.name} clicked!")
+                PlacePagingAdapter {
+                    val intent = generateMapsIntent(it.name, it.lat, it.lng)
+                    intent.resolveActivity(requireActivity().packageManager)?.let {
+                        startActivity(intent)
+                    }
                 }
             rvDataset.adapter = adapter
             rvDataset.layoutManager = LinearLayoutManager(requireContext())

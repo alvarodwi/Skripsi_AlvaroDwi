@@ -8,6 +8,8 @@ import me.varoa.nongki.domain.model.HangoutPlace
 import me.varoa.nongki.utils.viewbinding.viewBinding
 
 class PlaceAdapter(
+    private val userLat: Double,
+    private val userLng: Double,
     private val onClick: (HangoutPlace) -> Unit,
 ) : ListAdapter<HangoutPlace, PlaceItemViewHolder>(PLACE_DIFF) {
     companion object {
@@ -33,5 +35,5 @@ class PlaceAdapter(
     override fun onBindViewHolder(
         holder: PlaceItemViewHolder,
         position: Int,
-    ) = holder.bind(getItem(position), onClick)
+    ) = holder.bind(getItem(position), onClick, userLat, userLng)
 }

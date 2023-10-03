@@ -42,15 +42,10 @@
         android:id="@+id/historyFragment"
         android:name="me.varoa.nongki.ui.screen.history.HistoryFragment"
         android:label="HistoryFragment"
-        tools:layout="@layout/fragment_history" />
-    <fragment
-        android:id="@+id/resultFragment"
-        android:name="me.varoa.nongki.ui.screen.result.ResultFragment"
-        android:label="ResultFragment"
-        tools:layout="@layout/fragment_result">
-        <argument
-            android:name="searchId"
-            app:argType="integer" />
+        tools:layout="@layout/fragment_history">
+        <action
+            android:id="@+id/action_history_to_result"
+            app:destination="@id/nav_result" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -59,7 +54,7 @@
         tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_search_to_result"
-            app:destination="@id/resultFragment"
+            app:destination="@id/nav_result"
             app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment
@@ -73,4 +68,26 @@
             app:popUpTo="@id/nav_main"
             app:popUpToInclusive="true" />
     </fragment>
+    <navigation
+        android:id="@+id/nav_result"
+        android:label="Result Navigation"
+        app:startDestination="@id/resultFragment">
+        <argument
+            android:name="searchId"
+            app:argType="integer" />
+        <fragment
+            android:id="@+id/resultFragment"
+            android:name="me.varoa.nongki.ui.screen.result.ResultFragment"
+            android:label="ResultFragment"
+            tools:layout="@layout/fragment_result">
+            <action
+                android:id="@+id/action_result_to_maps"
+                app:destination="@id/resultMapsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/resultMapsFragment"
+            android:name="me.varoa.nongki.ui.screen.result.ResultMapsFragment"
+            android:label="ResultMapFragment"
+            tools:layout="@layout/fragment_result_maps" />
+    </navigation>
 </navigation>

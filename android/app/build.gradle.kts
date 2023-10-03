@@ -114,6 +114,8 @@ dependencies {
     // gms
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
+    implementation(libs.maps.utils.ktx)
+    implementation(libs.maps.ktx)
 
     /*
     other libs

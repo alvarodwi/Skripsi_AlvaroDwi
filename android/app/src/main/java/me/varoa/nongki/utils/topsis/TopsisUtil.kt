@@ -7,6 +7,6 @@ object TopsisUtil {
         places: List<HangoutPlace>,
         criteria: List<Int>,
     ): List<Int> {
-        return listOf(0, 2, 3)
+        return places.map { it.id }.shuffled().take(3).sorted()
     }
 }

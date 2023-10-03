@@ -8,18 +8,21 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import logcat.logcat
 import me.varoa.nongki.R
 import me.varoa.nongki.databinding.FragmentResultBinding
 import me.varoa.nongki.domain.model.SearchItem
+import me.varoa.nongki.ext.generateMapsIntent
+import me.varoa.nongki.ext.navigateTo
 import me.varoa.nongki.ui.adapter.PlaceAdapter
 import me.varoa.nongki.utils.viewbinding.viewBinding
 import org.hashids.Hashids
 import org.koin.android.ext.android.inject
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.navigation.koinNavGraphViewModel
 
 class ResultFragment : Fragment(R.layout.fragment_result) {
     private val binding by viewBinding<FragmentResultBinding>()
-    private val viewModel by viewModel<ResultViewModel>()
+    private val viewModel by koinNavGraphViewModel<ResultViewModel>(R.id.nav_result)
     private val hashids by inject<Hashids>()
 
     private var adapter: PlaceAdapter? = null
@@ -32,6 +35,18 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
 
         with(binding) {
             toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
+            toolbar.setOnMenuItemClickListener { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.action_maps -> {
+                        navigateTo(
+                            ResultFragmentDirections.actionResultToMaps(),
+                        )
+                        true
+                    }
+
+                    else -> false
+                }
+            }
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -40,14 +55,18 @@ class ResultFragment : Fragment(R.layout.fragment_result) {
     }
 
     private fun loadResult(data: SearchItem) {
+        logcat { data.toString() }
         with(binding) {
-            lblSearchId.text = hashids.encode(data.id.toLong())
+            lblSearchId.text = "#${hashids.encode(data.id.toLong())}"
             lblResultSubtitle.text = "Nongki berhasil menemukan ${data.results.size} tempat\nyang sesuai dengan kriteria kamu"
-            lblCriteria.text = "Kriteria : [ ${data.criteria.joinToString(",")} ]"
+            lblCriteria.text = "Kriteria : [ ${data.criteria.joinToString(", ")} ]"
 
             adapter =
-                PlaceAdapter {
-                    // do nothing for now
+                PlaceAdapter(data.userLat, data.userLng) {
+                    val intent = generateMapsIntent(it.name, it.lat, it.lng)
+                    intent.resolveActivity(requireActivity().packageManager)?.let {
+                        startActivity(intent)
+                    }
                 }
 
             rvResult.adapter = adapter
