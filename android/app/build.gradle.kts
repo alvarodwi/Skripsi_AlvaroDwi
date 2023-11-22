@@ -1,4 +1,6 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -10,9 +12,29 @@ plugins {
     alias(libs.plugins.crashlytics)
 }
 
+val keystorePropertiesFile: File = rootProject.file("keystore.properties")
+val keystoreProperty = Properties()
+keystoreProperty.load(FileInputStream(keystorePropertiesFile))
+
 android {
     namespace = "me.varoa.nongki"
     compileSdk = 34
+
+    signingConfigs {
+        getByName("debug") {
+            keyAlias = keystoreProperty["debugKeyAlias"] as String
+            keyPassword = keystoreProperty["debugKeyPassword"] as String
+            storeFile = file(rootDir.canonicalPath + "/" + keystoreProperty["debugKeyStore"])
+            storePassword = keystoreProperty["debugStorePassword"] as String
+        }
+
+        create("release") {
+            keyAlias = keystoreProperty["releaseKeyAlias"] as String
+            keyPassword = keystoreProperty["releaseKeyPassword"] as String
+            storeFile = file(rootDir.canonicalPath + "/" + keystoreProperty["releaseKeyStore"])
+            storePassword = keystoreProperty["releaseStorePassword"] as String
+        }
+    }
 
     defaultConfig {
         applicationId = "me.varoa.nongki"
@@ -33,10 +55,12 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            signingConfig = signingConfigs.getByName("release")
         }
 
         debug {
             applicationIdSuffix = ".debug"
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 

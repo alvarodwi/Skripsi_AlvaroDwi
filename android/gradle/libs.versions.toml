@@ -1,22 +1,22 @@
 [versions]
-agp = "8.1.2"
+agp = "8.1.4"
 androidx-lifecycle = "2.6.2"
-androidx-navigation = "2.7.3"
+androidx-navigation = "2.7.5"
 koin = "3.5.0"
 kotlin = "1.9.10"
 kotlinx-coroutines = "1.7.3"
-maps-ktx = "4.0.0"
+maps-ktx = "5.0.0"
 material = "1.9.0"
 mockk = "1.13.7"
-okhttp = "4.11.0"
+okhttp = "4.12.0"
 org-jetbrains-kotlin-android = "1.8.0"
 play-services-auth = "20.7.0"
 play-services-location = "21.0.1"
-play-services-maps = "18.1.0"
-room = "2.5.2"
+play-services-maps = "18.2.0"
+room = "2.6.0"
 
 [libraries]
-android-desugarJdkLibs = "com.android.tools:desugar_jdk_libs:2.0.3"
+android-desugarJdkLibs = "com.android.tools:desugar_jdk_libs:2.0.4"
 androidx-appcompat = "androidx.appcompat:appcompat:1.6.1"
 androidx-constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
 androidx-core = "androidx.core:core-ktx:1.12.0"
@@ -30,8 +30,8 @@ androidx-preference = "androidx.preference:preference-ktx:1.2.1"
 androidx-test-espresso-core = "androidx.test.espresso:espresso-core:3.5.1"
 androidx-test-ext = "androidx.test.ext:junit-ktx:1.1.5"
 androidx-work = "androidx.work:work-runtime-ktx:2.8.1"
-coil = "io.coil-kt:coil:2.4.0"
-firebase-bom = "com.google.firebase:firebase-bom:32.3.1"
+coil = "io.coil-kt:coil:2.5.0"
+firebase-bom = "com.google.firebase:firebase-bom:32.6.0"
 hashids = "org.hashids:hashids:1.0.3"
 junit = "junit:junit:4.13.2"
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
@@ -40,7 +40,7 @@ koin-androidx-workmanager = { module = "io.insert-koin:koin-androidx-workmanager
 kotlin-gradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-jdk8", version.ref = "kotlin" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinx-coroutines" }
-kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0"
+kotlinx-serialization-json = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.1"
 logcat = "com.squareup.logcat:logcat:0.1"
 maps-ktx = { module = "com.google.maps.android:maps-ktx", version.ref = "maps-ktx" }
 maps-utils-ktx = { module = "com.google.maps.android:maps-utils-ktx", version.ref = "maps-ktx" }
@@ -62,34 +62,34 @@ androidx-navigation-safeArgs = { id = "androidx.navigation.safeargs", version.re
 crashlytics = "com.google.firebase.crashlytics:2.9.9"
 google-services = "com.google.gms.google-services:4.4.0"
 gradle-secrets = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin:2.0.1"
-kotlin-android = "org.jetbrains.kotlin.android:1.9.10"
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-kotlinter = "org.jmailen.kotlinter:3.16.0"
-ksp = "com.google.devtools.ksp:1.9.10-1.0.13"
+kotlin-android = "org.jetbrains.kotlin.android:1.9.20"
+kotlin-serialization = "org.jetbrains.kotlin.plugin.serialization:1.9.20"
+kotlinter = "org.jmailen.kotlinter:4.1.0"
+ksp = "com.google.devtools.ksp:1.9.20-1.0.14"
 vc-update = "nl.littlerobots.version-catalog-update:0.8.1"
-versions = "com.github.ben-manes.versions:0.48.0"
+versions = "com.github.ben-manes.versions:0.50.0"
 
 [bundles]
 androidx-lifecycle = [
-  "androidx-lifecycle-runtime",
-  "androidx-lifecycle-viewModel",
+    "androidx-lifecycle-runtime",
+    "androidx-lifecycle-viewModel",
 ]
 androidx-localPersistence = [
-  "room",
-  "room-paging",
-  "room-runtime",
+    "room",
+    "room-paging",
+    "room-runtime",
 ]
 androidx-navigation = [
-  "androidx-navigation-fragment",
-  "androidx-navigation-ui",
+    "androidx-navigation-fragment",
+    "androidx-navigation-ui",
 ]
 koin = [
-  "koin-android",
-  "koin-androidx-navigation",
-  "koin-androidx-workmanager",
+    "koin-android",
+    "koin-androidx-navigation",
+    "koin-androidx-workmanager",
 ]
 networking = [
-  "kotlinx-serialization-json",
-  "okhttp",
-  "okhttp-loggingInterceptor",
+    "kotlinx-serialization-json",
+    "okhttp",
+    "okhttp-loggingInterceptor",
 ]
