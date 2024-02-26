@@ -22,7 +22,7 @@ class SearchViewModel(
         val price: Int = 3,
         val location: Int = 3,
         val facility: Int = 3,
-        val reputation: Int = 3,
+        val reputation: Int = 5,
     )
 
     data class NavigateToResult(val searchId: Int) : OneTimeEvent()

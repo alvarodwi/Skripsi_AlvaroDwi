@@ -16,6 +16,7 @@ import me.varoa.nongki.ext.navigateTo
 import me.varoa.nongki.ext.toast
 import me.varoa.nongki.utils.viewbinding.viewBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.time.LocalTime
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding by viewBinding<FragmentHomeBinding>()
@@ -26,9 +27,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?,
     ) {
         super.onViewCreated(view, savedInstanceState)
-        // binding ui
         with(binding) {
-            // bottom bar
             with(bottomAppBar) {
                 setOnMenuItemClickListener { menuItem ->
                     when (menuItem.itemId) {
@@ -43,6 +42,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
 
             with(layoutHome) {
+                val currentHour = LocalTime.now().hour
+                val timeBlock = when (currentHour) {
+                  in 4..9 -> {
+                      "pagi"
+                  }
+                  in 10..13 -> {
+                      "siang"
+                  }
+                  in 14..17 -> {
+                      "sore"
+                  }
+                  else -> {
+                      "malam"
+                  }
+                }
+                lblHomeTitle.text = "Selamat ${timeBlock}!"
+
                 btnSearch.setOnClickListener {
                     navigateTo(HomeFragmentDirections.actionHomeToSearch())
                 }
