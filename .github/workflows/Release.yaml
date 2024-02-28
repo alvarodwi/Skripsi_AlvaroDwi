@@ -68,20 +68,20 @@ jobs:
         id: sign_app
         with:
           releaseDirectory: ./android/app/build/outputs/bundle/release
-          signingKeyBase64: ${{ secrets.KEYSTORE }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
+          signingKeyBase64: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
+          alias: ${{ secrets.RELEASE_ALIAS }}
+          keyStorePassword: ${{ secrets.RELEASE_KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.RELEASE_KEY_PASSWORD }}
 
       - name: Convert .aab to .apk
         id: convert_aab
         uses: mukeshsolanki/bundletool-action@v1.0.0
         with:
           aabFile: ${{steps.sign_app.outputs.signedReleaseFile}}
-          base64Keystore: ${{ secrets.KEYSTORE }}
-          keystoreAlias: ${{ secrets.ALIAS }}
-          keystorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
+          base64Keystore: ${{ secrets.RELEASE_KEYSTORE_BASE64 }}
+          keystoreAlias: ${{ secrets.RELEASE_ALIAS }}
+          keystorePassword: ${{ secrets.RELEASE_KEY_STORE_PASSWORD }}
+          keyPassword: ${{ secrets.RELEASE_KEY_PASSWORD }}
 
       - name: Upload app
         uses: softprops/action-gh-release@v1
