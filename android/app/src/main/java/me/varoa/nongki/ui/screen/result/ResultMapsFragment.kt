@@ -68,10 +68,11 @@ class ResultMapsFragment : LocationFragment(R.layout.fragment_result_maps) {
             viewModel.result.collectLatest { item ->
                 item.results.forEach { result ->
                     val location = LatLng(result.lat, result.lng)
-                    mMap.addMarker {
-                        position(location)
-                        title(result.name)
-                    }.also { it?.tag = result.name }
+                    mMap
+                        .addMarker {
+                            position(location)
+                            title(result.name)
+                        }.also { it?.tag = result.name }
                     mMap.setOnInfoWindowClickListener { marker ->
                         val intent = generateMapsIntent(marker.tag as String, marker.position.latitude, marker.position.longitude)
                         intent.resolveActivity(requireActivity().packageManager)?.let {
@@ -81,7 +82,7 @@ class ResultMapsFragment : LocationFragment(R.layout.fragment_result_maps) {
                 }
                 mMap.moveCamera(
                     CameraUpdateFactory.newLatLngZoom(
-                        LatLng(item.results[0].lat,item.results[0].lng),
+                        LatLng(item.results[0].lat, item.results[0].lng),
                         15f,
                     ),
                 )

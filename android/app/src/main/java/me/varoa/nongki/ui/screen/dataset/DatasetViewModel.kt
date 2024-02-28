@@ -24,9 +24,11 @@ class DatasetViewModel(
     private val mQuery: MutableStateFlow<String> = MutableStateFlow("")
     val query: StateFlow<String> = mQuery.asStateFlow()
     val places: Flow<PagingData<HangoutPlace>>
-        get() = mQuery.flatMapLatest { q ->
-            repository.getHangoutPlaces("%${q}%")
-        }.cachedIn(viewModelScope)
+        get() =
+            mQuery
+                .flatMapLatest { q ->
+                    repository.getHangoutPlaces("%$q%")
+                }.cachedIn(viewModelScope)
 
     fun search(q: String) {
         viewModelScope.launch {

@@ -4,6 +4,7 @@ import android.Manifest
 import android.location.Location
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -66,14 +67,16 @@ class SearchFragment : LocationFragment(R.layout.fragment_search) {
             with(layoutSearch) {
                 btnSearch.setOnClickListener {
                     getCurrentLocation()
+                    showLoading()
                 }
 
                 // kriteria harga
                 sliderPrice.apply {
                     setLabelFormatter { value ->
                         val result = StringBuilder()
-                        for (i in 1..value.toInt())
+                        for (i in 1..value.toInt()) {
                             result.append("$")
+                        }
                         result.toString()
                     }
                     addOnChangeListener { _, value, _ ->
@@ -106,7 +109,8 @@ class SearchFragment : LocationFragment(R.layout.fragment_search) {
     override fun onStart() {
         super.onStart()
         eventJob =
-            viewModel.events
+            viewModel
+                .events
                 .onEach { event ->
                     when (event) {
                         is NavigateToResult -> {
@@ -138,6 +142,14 @@ class SearchFragment : LocationFragment(R.layout.fragment_search) {
             }
         } else {
             requestLocationPermission(locationPermissionLauncher)
+        }
+    }
+
+    private fun showLoading() {
+        with(binding) {
+            loadingBar.isVisible = true
+            layoutLoading.root.isVisible = true
+            layoutSearch.root.isVisible = false
         }
     }
 }

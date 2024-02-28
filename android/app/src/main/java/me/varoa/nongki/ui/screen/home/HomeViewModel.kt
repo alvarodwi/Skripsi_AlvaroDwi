@@ -9,6 +9,7 @@ class HomeViewModel(
     private val prefs: DataStoreManager,
 ) : ViewModel() {
     val isFirstTimeSync = prefs.firstTimeSync
+    val isFirstTimeSearch = prefs.isFirstTimeSearch
 
     fun finishSync(datasetSize: Int) {
         viewModelScope.launch {

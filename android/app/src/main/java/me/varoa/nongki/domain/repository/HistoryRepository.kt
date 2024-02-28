@@ -6,5 +6,6 @@ import me.varoa.nongki.domain.model.SearchItem
 
 interface HistoryRepository {
     fun getHistories(): Flow<PagingData<SearchItem>>
+
     suspend fun deleteHistory(id: Int)
 }

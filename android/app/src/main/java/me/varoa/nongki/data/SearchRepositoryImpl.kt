@@ -1,6 +1,7 @@
 package me.varoa.nongki.data
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
@@ -14,6 +15,7 @@ import me.varoa.nongki.data.local.entity.asModel
 import me.varoa.nongki.domain.model.SearchItem
 import me.varoa.nongki.domain.repository.SearchRepository
 import me.varoa.nongki.utils.topsis.TopsisUtil
+import kotlin.random.Random
 
 class SearchRepositoryImpl(
     private val dao: SearchDao,
@@ -32,6 +34,7 @@ class SearchRepositoryImpl(
     override suspend fun initiateSearch(data: SearchItem): Flow<Result<Int>> =
         flow {
             try {
+                delay(Random.nextLong(3000, 7000))
                 val dataset = dao.getDataset().first().map(HangoutPlaceEntity::asModel)
                 val searchResult = TopsisUtil.recommendPlaceFromCriteria(places = dataset, weight = data.criteria)
                 val newData = data.asEntity().copy(results = searchResult)

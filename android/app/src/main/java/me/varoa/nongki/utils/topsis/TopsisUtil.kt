@@ -5,7 +5,6 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 object TopsisUtil {
-
     data class TopsisPlace(
         val id: Int,
         val criteria: List<Double>,
@@ -14,17 +13,18 @@ object TopsisUtil {
     private fun HangoutPlace.toTopsisPlace() =
         TopsisPlace(
             id = this.id,
-            criteria = listOf(
-                this.price.toDouble(),
-                this.facility.toDouble(),
-                this.location.toDouble(),
-                this.reputation.toDouble(),
-            )
+            criteria =
+                listOf(
+                    this.price.toDouble(),
+                    this.facility.toDouble(),
+                    this.location.toDouble(),
+                    this.reputation.toDouble(),
+                ),
         )
 
     fun recommendPlaceFromCriteria(
-        places: List<HangoutPlace>, // alternative
-        weight: List<Int>, //user inputted criteria
+        places: List<HangoutPlace>,
+        weight: List<Int>,
     ): List<Int> {
         // convert place to TopsisPlace (for easier calculation)
         val dataset = places.map { it.toTopsisPlace() }
@@ -41,27 +41,31 @@ object TopsisUtil {
             }
             factors.add(sqrt(temp))
         }
-        println("factors\n-> ${factors}")
+        println("factors\n-> $factors")
 
         for (data in dataset) {
-            val newCriteria = data.criteria.mapIndexed { i, d ->
-                (d / factors[i]) * weight[i]
-            }
-            val newData = data.copy(
-                criteria = newCriteria
-            )
+            val newCriteria =
+                data.criteria.mapIndexed { i, d ->
+                    (d / factors[i]) * weight[i]
+                }
+            val newData =
+                data.copy(
+                    criteria = newCriteria,
+                )
             normalized.add(newData)
         }
         println("normalized\n-> ${normalized.map { it.criteria }}")
 
-        val idealBest = (weight.indices).map { index ->
-            normalized.mapNotNull { it.criteria.getOrNull(index) }.maxOrNull() ?: 0.0
-        }
-        val idealWorst = (weight.indices).map { index ->
-            normalized.mapNotNull { it.criteria.getOrNull(index) }.minOrNull() ?: 0.0
-        }
-        println("idealBest\n-> ${idealBest}")
-        println("idealWorst\n-> ${idealWorst}")
+        val idealBest =
+            (weight.indices).map { index ->
+                normalized.mapNotNull { it.criteria.getOrNull(index) }.maxOrNull() ?: 0.0
+            }
+        val idealWorst =
+            (weight.indices).map { index ->
+                normalized.mapNotNull { it.criteria.getOrNull(index) }.minOrNull() ?: 0.0
+            }
+        println("idealBest\n-> $idealBest")
+        println("idealWorst\n-> $idealWorst")
 
         // result is map of HangoutPlace id as key and topsis score as value
         val result: MutableMap<Int, Double> = mutableMapOf()

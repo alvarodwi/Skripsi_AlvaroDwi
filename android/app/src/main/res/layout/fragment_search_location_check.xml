@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:indeterminate="true"
-        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -20,20 +19,12 @@
         app:navigationIcon="@drawable/ic_arrow_left"
         app:title="Pencarian" />
 
-    <FrameLayout
+    <include
+        android:id="@+id/layout_loading"
+        layout="@layout/layout_loading"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
-
-        <include
-            android:id="@+id/layout_search"
-            layout="@layout/layout_search" />
-
-        <include
-            android:id="@+id/layout_loading"
-            layout="@layout/layout_loading"
-            android:visibility="gone" />
-    </FrameLayout>
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

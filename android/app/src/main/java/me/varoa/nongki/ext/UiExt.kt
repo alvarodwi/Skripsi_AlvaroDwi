@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 private fun Fragment.createSnackbar(
     message: String,
@@ -26,3 +28,5 @@ fun Fragment.toast(
 }
 
 fun Fragment.navigateTo(directions: NavDirections) = findNavController().navigate(directions)
+
+val humanDateFormat = DateTimeFormatter.ofPattern("dd MMMM yyyy, HH:mm").withLocale(Locale("id", "ID"))

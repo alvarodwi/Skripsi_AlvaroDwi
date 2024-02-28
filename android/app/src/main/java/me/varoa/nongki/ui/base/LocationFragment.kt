@@ -26,35 +26,37 @@ open class LocationFragment(
 
     // location permission shenanigans
     protected fun requestLocationPermission(launcher: ActivityResultLauncher<Array<String>>) {
-        MaterialAlertDialogBuilder(requireContext()).apply {
-            setTitle(R.string.dialog_location_permission_needed_title)
-            setMessage(R.string.dialog_location_permission_needed_message)
-            setPositiveButton(R.string.dialog_ok) { _, _ ->
-                launcher.launch(
-                    arrayOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION,
-                    ),
-                )
-            }
-            setNegativeButton(R.string.dialog_cancel) { _, _ ->
-                toast("Mengembalikan ke halaman sebelumnya...")
-                findNavController().popBackStack()
-            }
-        }.show()
+        MaterialAlertDialogBuilder(requireContext())
+            .apply {
+                setTitle(R.string.dialog_location_permission_needed_title)
+                setMessage(R.string.dialog_location_permission_needed_message)
+                setPositiveButton(R.string.dialog_ok) { _, _ ->
+                    launcher.launch(
+                        arrayOf(
+                            Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION,
+                        ),
+                    )
+                }
+                setNegativeButton(R.string.dialog_cancel) { _, _ ->
+                    toast("Mengembalikan ke halaman sebelumnya...")
+                    findNavController().popBackStack()
+                }
+            }.show()
     }
 
     private fun onPermissionDenied() {
-        MaterialAlertDialogBuilder(requireContext()).apply {
-            setTitle(R.string.dialog_location_permission_rejected_title)
-            setMessage(R.string.dialog_location_permission_rejected_message)
-            setPositiveButton(R.string.dialog_ok) { _, _ ->
-                Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also {
-                    it.data = Uri.fromParts("package", requireActivity().packageName, null)
-                    startActivity(it)
+        MaterialAlertDialogBuilder(requireContext())
+            .apply {
+                setTitle(R.string.dialog_location_permission_rejected_title)
+                setMessage(R.string.dialog_location_permission_rejected_message)
+                setPositiveButton(R.string.dialog_ok) { _, _ ->
+                    Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).also {
+                        it.data = Uri.fromParts("package", requireActivity().packageName, null)
+                        startActivity(it)
+                    }
                 }
-            }
-        }.show()
+            }.show()
     }
 
     protected fun requestLocationPermissionLauncher(onPermissionAccepted: () -> Unit): ActivityResultLauncher<Array<String>> =

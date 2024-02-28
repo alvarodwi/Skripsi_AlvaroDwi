@@ -14,7 +14,9 @@ class SearchItemAdapter(
     private val hashids: Hashids,
     private val onClick: (SearchItem) -> Unit,
 ) : PagingDataAdapter<SearchItem, SearchItemItemViewHolder>(SEARCH_DIFF) {
-    inner class SearchItemItemViewHolder(private val binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class SearchItemItemViewHolder(
+        private val binding: ItemHistoryBinding,
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: SearchItem?) {
             if (data == null) return
             with(binding) {

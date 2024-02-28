@@ -10,6 +10,9 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_home_to_location_check"
+            app:destination="@id/searchLocationCheckFragment" />
+        <action
             android:id="@+id/action_home_to_search"
             app:destination="@id/searchFragment" />
         <action
@@ -55,6 +58,16 @@
         <action
             android:id="@+id/action_search_to_result"
             app:destination="@id/nav_result"
+            app:popUpTo="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchLocationCheckFragment"
+        android:name="me.varoa.nongki.ui.screen.search.check.SearchLocationCheckFragment"
+        android:label="SearchLocationCheckFragment"
+        tools:layout="@layout/fragment_search_location_check">
+        <action
+            android:id="@+id/action_location_check_to_search"
+            app:destination="@id/searchFragment"
             app:popUpTo="@id/homeFragment" />
     </fragment>
     <fragment

@@ -68,9 +68,7 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
                     recyclerView: RecyclerView,
                     viewHolder: ViewHolder,
                     target: ViewHolder,
-                ): Boolean {
-                    return false
-                }
+                ): Boolean = false
 
                 override fun onSwiped(
                     viewHolder: ViewHolder,
@@ -81,7 +79,10 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
                     showDeleteDialog(item.id)
                 }
 
-                override fun clearView(recyclerView: RecyclerView, viewHolder: ViewHolder) {
+                override fun clearView(
+                    recyclerView: RecyclerView,
+                    viewHolder: ViewHolder,
+                ) {
                     super.clearView(recyclerView, viewHolder)
                     viewHolder.itemView.apply {
                         ItemTouchHelper.Callback.getDefaultUIUtil().clearView(this)
@@ -96,8 +97,7 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
             .setMessage(getString(R.string.dialog_delete_history_message, hashids.encode(id.toLong())))
             .setPositiveButton(R.string.dialog_yes) { _, _ ->
                 viewModel.onDelete(id)
-            }
-            .setNegativeButton(R.string.dialog_no) { _, _ ->
+            }.setNegativeButton(R.string.dialog_no) { _, _ ->
                 itemTouchHelper.attachToRecyclerView(null)
                 itemTouchHelper.attachToRecyclerView(binding.rvHistory)
             }.show()

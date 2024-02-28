@@ -24,10 +24,11 @@ class SyncWorker(
         const val KEY_DATASET_SIZE = "dataset_size"
     }
 
-    override suspend fun doWork(): Result {
-        return try {
+    override suspend fun doWork(): Result =
+        try {
             val request =
-                Request.Builder()
+                Request
+                    .Builder()
                     .url(BuildConfig.DATASET_URL)
                     .build()
             val response: Response?
@@ -42,7 +43,7 @@ class SyncWorker(
             val csvString = requireNotNull(response.body?.string())
             val lines = csvString.split("\n")
             lines.subList(1, lines.size - 1).map { line ->
-                val test = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*\$)".toRegex(), limit = 8)
+                val test = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*\$)".toRegex(), limit = 9)
                 logcat { test.toString() }
                 places.add(
                     HangoutPlace(
@@ -72,5 +73,4 @@ class SyncWorker(
         } catch (ex: IOException) {
             Result.failure(workDataOf(KEY_MESSAGE to ex.message))
         }
-    }
 }

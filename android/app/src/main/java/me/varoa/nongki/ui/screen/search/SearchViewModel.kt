@@ -25,7 +25,9 @@ class SearchViewModel(
         val reputation: Int = 5,
     )
 
-    data class NavigateToResult(val searchId: Int) : OneTimeEvent()
+    data class NavigateToResult(
+        val searchId: Int,
+    ) : OneTimeEvent()
 
     private val mFormData = MutableStateFlow(SearchFormData())
     val formData get() = mFormData.asStateFlow()
@@ -57,7 +59,8 @@ class SearchViewModel(
             )
         viewModelScope.launch {
             mIsLoading.update { true }
-            repository.initiateSearch(searchItem)
+            repository
+                .initiateSearch(searchItem)
                 .catch { showErrorMessage(it.message) }
                 .collect { result ->
                     if (result.isSuccess) {

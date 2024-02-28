@@ -37,27 +37,29 @@ class DatasetFragment : Fragment(R.layout.fragment_dataset) {
                 val searchItem = menu.findItem(R.id.action_search)
                 searchView = searchItem.actionView as SearchView
                 searchView.queryHint = "Cari tempat berdasarkan nama..."
-                searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-                    override fun onQueryTextSubmit(query: String?): Boolean {
-                        toggleLoading(true)
-                        val temp = viewModel.query.value
-                        if (query == temp) {
-                            viewModel.search("")
-                            viewModel.search(temp)
-                        } else {
-                            viewModel.search(query ?: "")
+                searchView.setOnQueryTextListener(
+                    object : SearchView.OnQueryTextListener {
+                        override fun onQueryTextSubmit(query: String?): Boolean {
+                            toggleLoading(true)
+                            val temp = viewModel.query.value
+                            if (query == temp) {
+                                viewModel.search("")
+                                viewModel.search(temp)
+                            } else {
+                                viewModel.search(query ?: "")
+                            }
+                            searchView.clearFocus()
+                            return true
                         }
-                        searchView.clearFocus()
-                        return true
-                    }
 
-                    override fun onQueryTextChange(newText: String?): Boolean {
-                        if (newText.isNullOrEmpty()) {
-                            viewModel.search("")
+                        override fun onQueryTextChange(newText: String?): Boolean {
+                            if (newText.isNullOrEmpty()) {
+                                viewModel.search("")
+                            }
+                            return false
                         }
-                        return false
-                    }
-                })
+                    },
+                )
             }
 
             adapter =
@@ -95,7 +97,7 @@ class DatasetFragment : Fragment(R.layout.fragment_dataset) {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.query.collectLatest { str ->
                 binding.lblSearchHint.isVisible = str.isNotEmpty()
-                binding.lblSearchHint.text = "Menampilkan data lokasi dengan nama '${str}'"
+                binding.lblSearchHint.text = "Menampilkan data lokasi dengan nama '$str'"
             }
         }
 

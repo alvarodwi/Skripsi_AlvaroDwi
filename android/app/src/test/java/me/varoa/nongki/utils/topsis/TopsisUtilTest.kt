@@ -20,14 +20,15 @@ class TopsisUtilTest {
         assertEquals(ids[4], 3)
     }
 
-    private val dummyPlaces = listOf<HangoutPlace>(
-        HangoutPlace(1, "A", "", 5, 3, 5, 1, 0.0, 0.0),
-        HangoutPlace(2, "B", "", 3, 1, 3, 5, 0.0, 0.0),
-        HangoutPlace(3, "C", "", 3, 1, 5, 1, 0.0, 0.0),
-        HangoutPlace(4, "D", "", 1, 2, 2, 3, 0.0, 0.0),
-        HangoutPlace(5, "E", "", 4, 3, 2, 1, 0.0, 0.0),
-        HangoutPlace(6, "F", "", 4, 5, 1, 2, 0.0, 0.0),
-    )
+    private val dummyPlaces =
+        listOf<HangoutPlace>(
+            HangoutPlace(1, "A", "", 5, 3, 5, 1, 0.0, 0.0),
+            HangoutPlace(2, "B", "", 3, 1, 3, 5, 0.0, 0.0),
+            HangoutPlace(3, "C", "", 3, 1, 5, 1, 0.0, 0.0),
+            HangoutPlace(4, "D", "", 1, 2, 2, 3, 0.0, 0.0),
+            HangoutPlace(5, "E", "", 4, 3, 2, 1, 0.0, 0.0),
+            HangoutPlace(6, "F", "", 4, 5, 1, 2, 0.0, 0.0),
+        )
 
     private val dummyCriteria = listOf<Int>(1, 3, 3, 5)
 

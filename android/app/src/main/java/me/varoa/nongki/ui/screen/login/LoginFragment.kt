@@ -48,7 +48,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private fun firebaseAuthWithGoogle(idToken: String) {
         logcat { "firebaseAuthWithGoogle($idToken)" }
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential)
+        auth
+            .signInWithCredential(credential)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
@@ -66,7 +67,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val gso =
-            GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(BuildConfig.WEB_OAUTH_CLIENT_ID)
                 .requestEmail()
                 .build()

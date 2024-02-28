@@ -9,40 +9,35 @@ import androidx.preference.PreferenceScreen
 @Target(AnnotationTarget.TYPE)
 annotation class SettingsDsl
 
-inline fun PreferenceGroup.preference(block: (@SettingsDsl Preference).() -> Unit): Preference {
-    return initThenAdd(Preference(context), block)
-}
+inline fun PreferenceGroup.preference(block: (@SettingsDsl Preference).() -> Unit): Preference = initThenAdd(Preference(context), block)
 
-inline fun PreferenceScreen.preferenceCategory(block: (@SettingsDsl PreferenceCategory).() -> Unit): PreferenceCategory {
-    return addThenInit(
+inline fun PreferenceScreen.preferenceCategory(block: (@SettingsDsl PreferenceCategory).() -> Unit): PreferenceCategory =
+    addThenInit(
         PreferenceCategory(context).apply {
             isIconSpaceReserved = false
         },
         block,
     )
-}
 
 inline fun <P : Preference> PreferenceGroup.initThenAdd(
     p: P,
     block: P.() -> Unit,
-): P {
-    return p.apply {
+): P =
+    p.apply {
         block()
         this.isIconSpaceReserved = false
         addPreference(this)
     }
-}
 
 inline fun <P : Preference> PreferenceGroup.addThenInit(
     p: P,
     block: P.() -> Unit,
-): P {
-    return p.apply {
+): P =
+    p.apply {
         this.isIconSpaceReserved = false
         addPreference(this)
         block()
     }
-}
 
 inline fun Preference.onClick(crossinline block: () -> Unit) {
     setOnPreferenceClickListener {
