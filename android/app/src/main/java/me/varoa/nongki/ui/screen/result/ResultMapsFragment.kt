@@ -59,7 +59,7 @@ class ResultMapsFragment : LocationFragment(R.layout.fragment_result_maps) {
             isRotateGesturesEnabled = true
         }
 
-        getCurrentLocation()
+        // getCurrentLocation()
     }
 
     @SuppressLint("PotentialBehaviorOverride")
@@ -79,6 +79,12 @@ class ResultMapsFragment : LocationFragment(R.layout.fragment_result_maps) {
                         }
                     }
                 }
+                mMap.moveCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        LatLng(item.results[0].lat,item.results[0].lng),
+                        15f,
+                    ),
+                )
             }
         }
 

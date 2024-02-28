@@ -21,17 +21,6 @@ class HistoryRepositoryImpl(
             dao.getItems()
         }.flow.map { pagingData -> pagingData.map { it.asModel { emptyList() } } }
 
-    override fun getHistory(id: Int): Flow<SearchItem> =
-        dao.getItem(id).map { entity ->
-            val places =
-                withContext(Dispatchers.IO) {
-                    dao.getResultPlaces(entity.results)
-                }
-            entity.asModel {
-                places.map { it.asModel() }
-            }
-        }
-
     override suspend fun deleteHistory(id: Int) {
         withContext(Dispatchers.IO) {
             dao.delete(id)

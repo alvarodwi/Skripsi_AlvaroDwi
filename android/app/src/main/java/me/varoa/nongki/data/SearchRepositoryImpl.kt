@@ -25,7 +25,7 @@ class SearchRepositoryImpl(
                     dao.getResultPlaces(entity.results)
                 }
             entity.asModel {
-                places.map { it.asModel() }
+                places.map { it.asModel() }.sortedBy { entity.results.indexOf(it.id) }
             }
         }
 
@@ -33,7 +33,7 @@ class SearchRepositoryImpl(
         flow {
             try {
                 val dataset = dao.getDataset().first().map(HangoutPlaceEntity::asModel)
-                val searchResult = TopsisUtil.recommendPlaceFromCriteria(places = dataset, criteria = data.criteria)
+                val searchResult = TopsisUtil.recommendPlaceFromCriteria(places = dataset, weight = data.criteria)
                 val newData = data.asEntity().copy(results = searchResult)
                 logcat { "initiateSearch.newData -> $newData" }
                 val newItemId =

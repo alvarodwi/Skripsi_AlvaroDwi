@@ -46,19 +46,19 @@ class SyncWorker(
                 logcat { test.toString() }
                 places.add(
                     HangoutPlace(
-                        id = 0,
-                        name = test[0].trim(),
-                        address = test[1].trim().removeSurrounding("\""),
-                        lat = test[2].trim().toDouble(),
-                        lng = test[3].trim().toDouble(),
-                        price = test[4].trim().toInt(),
-                        facility = test[5].trim().toInt(),
-                        location = test[6].trim().toInt(),
-                        reputation = test[7].trim().toInt(),
+                        id = test[0].trim().toInt(),
+                        name = test[1].trim(),
+                        address = test[2].trim().removeSurrounding("\""),
+                        lat = test[3].trim().toDouble(),
+                        lng = test[4].trim().toDouble(),
+                        price = test[5].trim().toInt(),
+                        facility = test[6].trim().toInt(),
+                        location = test[7].trim().toInt(),
+                        reputation = test[8].trim().toInt(),
                     ),
                 )
             }
-            logcat { "places -> $places" }
+            // logcat { "places -> $places" }
             repository.deleteAllHangoutPlaces()
             repository.insertHangoutPlace(*places.toTypedArray())
             Result.success(

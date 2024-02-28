@@ -23,7 +23,7 @@ class DatasetRepositoryImpl(
 
     override fun getHangoutPlace(id: Int): Flow<HangoutPlace> = dao.getPlace(id).map(HangoutPlaceEntity::asModel)
 
-    override suspend fun insertHangoutPlace(vararg places: HangoutPlace) = dao.insert(*places.map { it.asEntity() }.toTypedArray())
+    override suspend fun insertHangoutPlace(vararg places: HangoutPlace) = dao.upsert(*places.map { it.asEntity() }.toTypedArray())
 
     override suspend fun deleteAllHangoutPlaces() = dao.deleteAll()
 }

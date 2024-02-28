@@ -6,5 +6,6 @@ data class SearchItem(
     val criteria: List<Int>,
     val userLat: Double,
     val userLng: Double,
+    val resultIds: List<Int> = emptyList(),
     val results: List<HangoutPlace> = emptyList(),
 )

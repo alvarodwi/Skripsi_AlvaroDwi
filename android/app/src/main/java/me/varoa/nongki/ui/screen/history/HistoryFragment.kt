@@ -80,6 +80,13 @@ class HistoryFragment : Fragment(R.layout.fragment_history) {
                     val item = adapter!!.snapshot().items[position]
                     showDeleteDialog(item.id)
                 }
+
+                override fun clearView(recyclerView: RecyclerView, viewHolder: ViewHolder) {
+                    super.clearView(recyclerView, viewHolder)
+                    viewHolder.itemView.apply {
+                        ItemTouchHelper.Callback.getDefaultUIUtil().clearView(this)
+                    }
+                }
             },
         )
 

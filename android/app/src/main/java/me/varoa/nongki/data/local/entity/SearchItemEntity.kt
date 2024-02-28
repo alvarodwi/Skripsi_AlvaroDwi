@@ -22,7 +22,7 @@ fun SearchItem.asEntity() =
         criteria = criteria,
         userLat = userLat,
         userLng = userLng,
-        results = results.map { it.id },
+        results = resultIds,
     )
 
 fun SearchItemEntity.asModel(getResultFromIds: () -> List<HangoutPlace>) =
@@ -32,5 +32,6 @@ fun SearchItemEntity.asModel(getResultFromIds: () -> List<HangoutPlace>) =
         criteria = criteria,
         userLat = userLat,
         userLng = userLng,
+        resultIds = results,
         results = getResultFromIds(),
     )
