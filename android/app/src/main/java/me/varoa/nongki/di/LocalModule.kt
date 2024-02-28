@@ -9,14 +9,13 @@ import org.koin.dsl.module
 
 val localModule =
     module {
-        fun provideDatabase(context: Context): AppDatabase {
-            return Room.databaseBuilder(
-                context,
-                AppDatabase::class.java,
-                "nongki.db",
-            )
-                .build()
-        }
+        fun provideDatabase(context: Context): AppDatabase =
+            Room
+                .databaseBuilder(
+                    context,
+                    AppDatabase::class.java,
+                    "nongki.db",
+                ).build()
 
         single { provideDatabase(androidContext()) }
 

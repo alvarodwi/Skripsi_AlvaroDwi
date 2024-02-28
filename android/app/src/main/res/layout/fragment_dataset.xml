@@ -14,6 +14,12 @@
         app:navigationIcon="@drawable/ic_arrow_left"
         app:title="Database" />
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/loading_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
     <TextView
         android:id="@+id/lbl_dataset_subtitle"
         android:layout_width="wrap_content"
@@ -25,6 +31,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
+    <TextView
+        android:id="@+id/lbl_search_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        android:textAppearance="?textAppearanceBodySmall"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lbl_dataset_subtitle"
+        tools:text="Menampilkan data lokasi dengan nama 'X'" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_dataset"
         android:layout_width="match_parent"
@@ -32,6 +49,6 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lbl_dataset_subtitle"
+        app:layout_constraintTop_toBottomOf="@id/lbl_search_hint"
         tools:listitem="@layout/item_place" />
 </androidx.constraintlayout.widget.ConstraintLayout>

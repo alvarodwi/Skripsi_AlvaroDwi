@@ -8,4 +8,5 @@ object PrefKeys {
     val FIRST_TIME_SYNC = booleanPreferencesKey("first_time_sync")
     val DATASET_SIZE = intPreferencesKey("dataset_size")
     val LAST_SYNC = stringPreferencesKey("last_sync")
+    val FIRST_TIME_SEARCH = booleanPreferencesKey("first_time_search")
 }

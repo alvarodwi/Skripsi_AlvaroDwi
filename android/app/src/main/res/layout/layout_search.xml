@@ -26,145 +26,153 @@
         app:layout_constraintTop_toBottomOf="@id/lbl_search_title" />
 
     <TextView
-        android:id="@+id/lbl_criteria1"
+        android:id="@+id/lbl_criteria_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:text="Kriteria 1"
+        android:text="Harga"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lbl_search_subtitle" />
 
     <com.google.android.material.slider.Slider
-        android:id="@+id/slider1"
+        android:id="@+id/slider_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
+        android:stepSize="1"
+        android:value="3"
         android:valueFrom="1"
         android:valueTo="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lbl_criteria1" />
+        app:layout_constraintTop_toBottomOf="@id/lbl_criteria_price" />
 
     <TextView
-        android:id="@+id/tv_criteria1"
+        android:id="@+id/tv_criteria_price"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="-12dp"
-        android:text="Penting"
+        android:text="Biasa"
         android:textAlignment="center"
         android:textAppearance="?textAppearanceLabelMedium"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slider1" />
+        app:layout_constraintTop_toBottomOf="@id/slider_price" />
 
     <TextView
-        android:id="@+id/lbl_criteria2"
+        android:id="@+id/lbl_criteria_facility"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:text="Kriteria 2"
+        android:text="Fasilitas yang tersedia"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_criteria1" />
+        app:layout_constraintTop_toBottomOf="@id/tv_criteria_price" />
 
     <com.google.android.material.slider.Slider
-        android:id="@+id/slider2"
+        android:id="@+id/slider_facility"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
+        android:stepSize="1"
+        android:value="3"
         android:valueFrom="1"
         android:valueTo="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lbl_criteria2" />
+        app:layout_constraintTop_toBottomOf="@id/lbl_criteria_facility" />
 
     <TextView
-        android:id="@+id/tv_criteria2"
+        android:id="@+id/tv_criteria_facility"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="-12dp"
-        android:text="Tidak Penting"
+        android:text="Biasa"
         android:textAlignment="center"
         android:textAppearance="?textAppearanceLabelMedium"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slider2" />
+        app:layout_constraintTop_toBottomOf="@id/slider_facility" />
 
     <TextView
-        android:id="@+id/lbl_criteria3"
+        android:id="@+id/lbl_criteria_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:text="Kriteria 3"
+        android:text="Kemudahan akses lokasi"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_criteria2" />
+        app:layout_constraintTop_toBottomOf="@id/tv_criteria_facility" />
 
     <com.google.android.material.slider.Slider
-        android:id="@+id/slider3"
+        android:id="@+id/slider_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
+        android:stepSize="1"
+        android:value="3"
         android:valueFrom="1"
         android:valueTo="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lbl_criteria3" />
+        app:layout_constraintTop_toBottomOf="@id/lbl_criteria_location" />
 
     <TextView
-        android:id="@+id/tv_criteria3"
+        android:id="@+id/tv_criteria_location"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="-12dp"
-        android:text="Sangat Tidak Penting"
+        android:text="Biasa"
         android:textAlignment="center"
         android:textAppearance="?textAppearanceLabelMedium"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slider3" />
+        app:layout_constraintTop_toBottomOf="@id/slider_location" />
 
     <TextView
-        android:id="@+id/lbl_criteria4"
+        android:id="@+id/lbl_criteria_reputation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
-        android:text="Kriteria 4"
+        android:text="Reputasi di internet"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_criteria3" />
+        app:layout_constraintTop_toBottomOf="@id/tv_criteria_location" />
 
     <com.google.android.material.slider.Slider
-        android:id="@+id/slider4"
+        android:id="@+id/slider_reputation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="4dp"
+        android:stepSize="1"
+        android:value="5"
         android:valueFrom="1"
         android:valueTo="5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/lbl_criteria4" />
+        app:layout_constraintTop_toBottomOf="@id/lbl_criteria_reputation" />
 
     <TextView
-        android:id="@+id/tv_criteria4"
+        android:id="@+id/tv_criteria_reputation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -175,7 +183,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slider4" />
+        app:layout_constraintTop_toBottomOf="@id/slider_reputation" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_search"

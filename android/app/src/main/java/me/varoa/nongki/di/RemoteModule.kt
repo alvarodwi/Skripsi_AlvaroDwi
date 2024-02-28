@@ -13,24 +13,24 @@ val remoteModule =
     module {
         val defaultTimeout = 5L
 
-        fun provideOkHttpClient(): OkHttpClient {
-            return OkHttpClient.Builder()
+        fun provideOkHttpClient(): OkHttpClient =
+            OkHttpClient
+                .Builder()
                 .addInterceptor(
                     HttpLoggingInterceptor { message ->
                         logcat("API") { message }
                     }.setLevel(HttpLoggingInterceptor.Level.BASIC),
-                )
-                .connectTimeout(defaultTimeout, TimeUnit.MINUTES)
+                ).connectTimeout(defaultTimeout, TimeUnit.MINUTES)
                 .readTimeout(defaultTimeout, TimeUnit.MINUTES)
                 .build()
-        }
 
         single { provideOkHttpClient() }
 
         fun provideCoilLoader(
             context: Context,
             client: OkHttpClient,
-        ) = ImageLoader.Builder(context)
+        ) = ImageLoader
+            .Builder(context)
             .okHttpClient(client)
             .crossfade(true)
             .build()

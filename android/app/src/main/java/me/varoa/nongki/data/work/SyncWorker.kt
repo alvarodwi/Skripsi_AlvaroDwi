@@ -24,10 +24,11 @@ class SyncWorker(
         const val KEY_DATASET_SIZE = "dataset_size"
     }
 
-    override suspend fun doWork(): Result {
-        return try {
+    override suspend fun doWork(): Result =
+        try {
             val request =
-                Request.Builder()
+                Request
+                    .Builder()
                     .url(BuildConfig.DATASET_URL)
                     .build()
             val response: Response?
@@ -42,23 +43,23 @@ class SyncWorker(
             val csvString = requireNotNull(response.body?.string())
             val lines = csvString.split("\n")
             lines.subList(1, lines.size - 1).map { line ->
-                val test = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*\$)".toRegex(), limit = 8)
+                val test = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*\$)".toRegex(), limit = 9)
                 logcat { test.toString() }
                 places.add(
                     HangoutPlace(
-                        id = 0,
-                        name = test[0].trim(),
-                        address = test[1].trim().removeSurrounding("\""),
-                        lat = test[2].trim().toDouble(),
-                        lng = test[3].trim().toDouble(),
-                        price = test[4].trim().toInt(),
-                        facility = test[5].trim().toInt(),
-                        location = test[6].trim().toInt(),
-                        reputation = test[7].trim().toInt(),
+                        id = test[0].trim().toInt(),
+                        name = test[1].trim(),
+                        address = test[2].trim().removeSurrounding("\""),
+                        lat = test[3].trim().toDouble(),
+                        lng = test[4].trim().toDouble(),
+                        price = test[5].trim().toInt(),
+                        facility = test[6].trim().toInt(),
+                        location = test[7].trim().toInt(),
+                        reputation = test[8].trim().toInt(),
                     ),
                 )
             }
-            logcat { "places -> $places" }
+            // logcat { "places -> $places" }
             repository.deleteAllHangoutPlaces()
             repository.insertHangoutPlace(*places.toTypedArray())
             Result.success(
@@ -72,5 +73,4 @@ class SyncWorker(
         } catch (ex: IOException) {
             Result.failure(workDataOf(KEY_MESSAGE to ex.message))
         }
-    }
 }

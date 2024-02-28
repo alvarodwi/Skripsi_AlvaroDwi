@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "506e2f2355a2aa62147aa086c007ff4f",
+    "identityHash": "2ce8b7240e97c231e5524ab9bce00c15",
     "entities": [
       {
         "tableName": "hangout_places",
@@ -74,7 +74,7 @@
       },
       {
         "tableName": "search_items",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timestamp` TEXT NOT NULL, `criteria` TEXT NOT NULL, `results` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `timestamp` TEXT NOT NULL, `criteria` TEXT NOT NULL, `userLat` REAL NOT NULL, `userLng` REAL NOT NULL, `results` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
@@ -92,6 +92,18 @@
             "fieldPath": "criteria",
             "columnName": "criteria",
             "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userLat",
+            "columnName": "userLat",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userLng",
+            "columnName": "userLng",
+            "affinity": "REAL",
             "notNull": true
           },
           {
@@ -114,7 +126,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '506e2f2355a2aa62147aa086c007ff4f')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2ce8b7240e97c231e5524ab9bce00c15')"
     ]
   }
 }

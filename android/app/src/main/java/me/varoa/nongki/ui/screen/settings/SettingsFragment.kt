@@ -85,20 +85,24 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             preferenceScreen = screen
             setupPreferenceScreen(screen)
         }
-   
+
         private fun setupPreferenceScreen(screen: PreferenceScreen) =
             with(screen) {
                 preference {
                     icon = ContextCompat.getDrawable(requireContext(), R.drawable.ic_sync)
                     title = "Mulai sinkronisasi database"
-                    summary = "Terakhir dijalankan : $lastSync"
+                    summary =
+                        """Terakhir dijalankan :
+                        |$lastSync
+                        """.trimMargin()
                     onClick {
                         toast("Memulai sinkronisasi")
                         val syncRequest = OneTimeWorkRequestBuilder<SyncWorker>().build()
                         val workManager = WorkManager.getInstance(requireContext())
                         workManager.enqueue(syncRequest)
 
-                        workManager.getWorkInfoByIdLiveData(syncRequest.id)
+                        workManager
+                            .getWorkInfoByIdLiveData(syncRequest.id)
                             .observe(viewLifecycleOwner) { workInfo ->
                                 when (workInfo?.state) {
                                     WorkInfo.State.SUCCEEDED -> {
