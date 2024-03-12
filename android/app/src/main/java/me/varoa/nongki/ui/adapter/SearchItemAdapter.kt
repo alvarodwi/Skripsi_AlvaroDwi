@@ -6,9 +6,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import me.varoa.nongki.databinding.ItemHistoryBinding
 import me.varoa.nongki.domain.model.SearchItem
+import me.varoa.nongki.ext.humanDateFormat
 import me.varoa.nongki.ui.adapter.SearchItemAdapter.SearchItemItemViewHolder
 import me.varoa.nongki.utils.viewbinding.viewBinding
 import org.hashids.Hashids
+import java.time.LocalDateTime
 
 class SearchItemAdapter(
     private val hashids: Hashids,
@@ -21,8 +23,8 @@ class SearchItemAdapter(
             if (data == null) return
             with(binding) {
                 root.setOnClickListener { onClick(data) }
-                lblId.text = "#ID ${hashids.encode(data.id.toLong())}"
-                lblTimestamp.text = data.timestamp
+                lblTimestamp.text = "#ID ${hashids.encode(data.id.toLong())}"
+                lblId.text = LocalDateTime.parse(data.timestamp).format(humanDateFormat)
             }
         }
     }

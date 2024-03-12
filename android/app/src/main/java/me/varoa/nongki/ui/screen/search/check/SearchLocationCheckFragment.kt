@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.delay
@@ -35,6 +36,7 @@ class SearchLocationCheckFragment : LocationFragment(R.layout.fragment_search_lo
     ) {
         super.onViewCreated(view, savedInstanceState)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
+        binding.toolbar.setNavigationOnClickListener { findNavController().popBackStack() }
         with(binding.layoutLoading) {
             ivIllust.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.illust_tracking))
             lblLoading.text = "Memeriksa lokasi kamu"
